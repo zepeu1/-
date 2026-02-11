@@ -62,20 +62,37 @@
     "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
     "lucide-react": "https://esm.sh/lucide-react@0.292.0",
     "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "react/": "https://esm.sh/react@^19.2.4/"
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.4"
   }
 }
 </script>
   </head>
   <body>
-    <!-- React가 로드되지 않았을 때 표시될 안내 문구 (정상 빌드 시 자동으로 덮어씌워짐) -->
+    <!-- React가 마운트될 Root 요소 및 테마에 맞는 로딩/에러 화면 -->
     <div id="root">
-      <div style="display: flex; height: 100vh; width: 100%; align-items: center; justify-content: center; flex-direction: column; text-align: center; padding: 20px; color: #555;">
-        <div style="color: #ef4444; font-weight: bold; margin-bottom: 10px;">[ SYSTEM ERROR ]</div>
-        <p>화면을 렌더링할 수 없습니다.</p>
-        <p style="font-size: 0.875rem; color: #777; margin-top: 10px;">현재 환경에서 React/TypeScript 빌드가 지원되지 않고 있습니다.<br/>Vite 등의 번들러를 사용해 빌드하거나 CodeSandbox를 이용해 주세요.</p>
+      <div style="display: flex; height: 100vh; width: 100%; align-items: center; justify-content: center; flex-direction: column; text-align: center; color: #555; background-color: #000;">
+        <div style="color: #ef4444; font-weight: bold; margin-bottom: 10px; font-size: 1.5rem; letter-spacing: 2px;">[ SYSTEM BOOTING ]</div>
+        <p style="font-size: 0.875rem; color: #777;">데이터베이스에 접속 중입니다...</p>
+        
+        <!-- 3초 후에도 화면이 안 뜨면 안내 표시 -->
+        <p id="fallback-msg" style="display: none; font-size: 0.75rem; color: #ef4444; margin-top: 20px; border: 1px solid #ef444455; padding: 15px; border-radius: 5px; background: #22000055;">
+          * 외부 호스팅 환경입니다.<br/>
+          정상적인 출력을 위해 <b>Vercel, Netlify</b> 등에 프로젝트를 연동하거나<br/>
+          로컬 PC에서 <code>npm install</code> 및 <code>npm run dev</code>를 실행해 주세요.
+        </p>
+        <script>
+          setTimeout(() => {
+            const msg = document.getElementById('fallback-msg');
+            if(msg) msg.style.display = 'block';
+          }, 3000);
+        </script>
       </div>
     </div>
     <div class="scanline"></div>
+    
+    <!-- 외부 배포(Vite 등) 환경에서 React 앱을 실행하기 위한 필수 스크립트 연결 -->
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
