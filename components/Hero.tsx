@@ -43,11 +43,12 @@ const Hero: React.FC = () => {
 
         <div className="mt-12 flex flex-col md:flex-row gap-6 justify-center items-center">
             <button 
-                onClick={() => document.getElementById('world')?.scrollIntoView({ behavior: 'smooth' })}
-                className="px-8 py-4 bg-white text-black font-bold uppercase tracking-wider hover:bg-gray-200 transition-colors clip-path-polygon"
+                onClick={() => document.getElementById('database')?.scrollIntoView({ behavior: 'smooth' })}
+                className="group relative px-8 py-4 bg-white text-black font-bold uppercase tracking-wider hover:bg-gray-200 transition-all clip-path-polygon"
                 style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 20%)' }}
             >
-                Enter Database
+                <span className="relative z-10">Access Database</span>
+                <div className="absolute inset-0 bg-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left z-0 mix-blend-difference"></div>
             </button>
             <div className="flex gap-4 text-xs font-mono text-gray-500">
                 <span>LOC: SEOUL</span>

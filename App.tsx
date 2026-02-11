@@ -2,6 +2,7 @@ import React from 'react';
 import Hero from './components/Hero';
 import WorldView from './components/WorldView';
 import FactionSection from './components/FactionSection';
+import StatusDashboard from './components/StatusDashboard';
 
 const App: React.FC = () => {
   const scrollToSection = (id: string) => {
@@ -28,6 +29,7 @@ const App: React.FC = () => {
 
       <main>
         <Hero />
+        <StatusDashboard />
         <WorldView />
         <FactionSection />
       </main>
